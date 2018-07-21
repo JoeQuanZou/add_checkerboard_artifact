@@ -15,7 +15,7 @@ class Net(nn.Module):
             nn.ReLU(inplace=True),
             nn.Conv2d(in_channels=base_filter // 2, out_channels=num_channels * (upscale_factor ** 2), kernel_size=5, stride=1, padding=2,
                       bias=True),
-            nn.PixelShuffle(upscale_factor)
+            nn.PixelShuffle(upscale_factor),
 
             nn.ConvTranspose2d(in_channels=num_channels, out_channels=num_channels, kernel_size=9, stride=1,padding=4)
 		)
@@ -25,7 +25,7 @@ class Net(nn.Module):
 		return out
 
 	def weight_init(self,mean,std):
-		for m in self._modules：
+		for m in self._modules:
 			normal_init(self._modules[m], mean, std)
 
 
